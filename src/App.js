@@ -1,10 +1,12 @@
-import logo from './logo.svg';
+import SearchBar from './components/SearchBar';
+import Header from './components/Header';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      
+      <Header />
+      <SearchBar />
     </div>
   );
 }
