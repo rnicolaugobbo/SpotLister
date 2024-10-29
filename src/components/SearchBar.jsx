@@ -9,22 +9,17 @@ function SearchBar() {
     }
 
     return (
-        <div className="search-bar w-full max-w-md mx-auto">
-            <form className="relative" onSubmit={handleSubmit}>
-                <input 
-                className="w-full py-2 px-4 pr-10 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent mt-28"
-                type="text"
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                placeholder="Search for songs, albuns or artists" 
-                />
-                <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-green-500 focus:outline-none mt-14">
-                    <Search className="h-5 w-5" />
-                    <span className="sr-only">Search</span>
-                </button>
-            </form>
+        <div className="flex flex-col items-center space-y-4">
+          <input
+            type="text"
+            placeholder="Enter A Song Title"
+            className="w-full max-w-md px-4 py-2 text-purple-900 bg-white border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 mt-32"
+          />
+          <button className="px-6 py-2 text-white bg-purple-900 rounded-md hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+            SEARCH
+          </button>
         </div>
-    )
+      )
 };
 
 export default SearchBar
