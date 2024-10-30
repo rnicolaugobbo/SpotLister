@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
+import TrackList from "./TrackList";
 
-function Playlist() {
+function Playlist(props) {
+  const handleNameChange = useCallback((event) => {
+    props.onNameChange(event.target.value);
+  }, [props.onNameChange]);
+
     return (
         <div className="bg-purple-900/80 text-white rounded-lg overflow-hidden">
           <div className="p-4 border-b border-purple-700">
@@ -8,7 +13,12 @@ function Playlist() {
               type="text"
               placeholder="New Playlist"
               className="w-full bg-transparent border-none text-2xl font-bold text-white placeholder-purple-300 focus:outline-none"
+              onChange={handleNameChange}
             />
+            <TrackList 
+            tracks={props.playlistTracks}
+            isRemoval={true}
+            onRemove={props.onRemove} />
           </div>
           <div className="p-4 space-y-4">
             <p className="text-purple-300">Your playlist items will appear here...</p>
