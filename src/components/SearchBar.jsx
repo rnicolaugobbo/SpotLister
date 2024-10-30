@@ -1,13 +1,6 @@
-import React, { useState } from "react";
-import { Search } from 'lucide-react';
+import React from "react";
 
 function SearchBar() {
-    const [searchInput, setSearchInput] = useState('');
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    }
-
     return (
         <div className="flex flex-col items-center space-y-4">
           <input

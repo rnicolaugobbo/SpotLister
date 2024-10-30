@@ -1,20 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 function Header() {
-    const [scrolled, setScrolled] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 10);
-        };
-
-        window.addEventListener('scroll', handleScroll)
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
     return (
         <header className="bg-black py-4">
           <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-teal-400 to-pink-500 text-transparent bg-clip-text">
