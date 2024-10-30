@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import TrackList from "./TrackList";
 
-function SearchResults() {
+function SearchResults(props) {
     const [searchResults, setSearchResults] = useState(['oiuqiu', 'oiahduie', 'isajdoijd'])
 
     return (
@@ -11,6 +12,7 @@ function SearchResults() {
           <div className="p-4">
             <p className="text-purple-300">Search results will appear here...</p>
           </div>
+          <TrackList tracks={props.searchResults} onAdd={props.onAdd} />
         </div>
       )
 }

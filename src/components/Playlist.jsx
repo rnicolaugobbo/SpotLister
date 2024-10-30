@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
 function Playlist() {
-    const [playlist, setPlaylist] = useState([]);
-
     return (
         <div className="bg-purple-900/80 text-white rounded-lg overflow-hidden">
           <div className="p-4 border-b border-purple-700">
