@@ -1,11 +1,22 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import SearchBar from './components/SearchBar';
 import Header from './components/Header';
 import SearchResults from './components/SearchResults';
 import Playlist from './components/Playlist';
+import redirectToSpotifyAuthorize from './requestSearch';
 import './App.css';
 
 function App() {
+  useEffect(() => {
+    const accessToken = localStorage.getItem('access_token');
+    const tokenExpiry = new Date(localStorage.getItem('expires'));
+    const now = new Date();
+
+    if (!accessToken || now >= tokenExpiry) {
+      redirectToSpotifyAuthorize();
+    }
+  }, []);
+  
   const [searchResults, setSearchResults] = useState([
     {
         id: 1,
