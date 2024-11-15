@@ -45,31 +45,6 @@ const getToken = async (code) => {
     return await response.json();
 }
 
-const refreshToken = async () => {
-    const response = await fetch(tokenEndpoint, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams({
-            client_id: clientId,
-            grant_type: 'refresh_token',
-            refresh_token: currentToken.refresh_token
-        }),
-    });
-
-    return await response.json();
-}
-
-const getUserData = async () => {
-    const response = await fetch('https://api.spotify.com/v1/me', {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + currentToken.access_token
-        },
-    });
-}
-
 if (code) {
     const token = await getToken(code);
     currentToken.save(token);
@@ -119,7 +94,7 @@ const redirectToSpotifyAuthorize = async () => {
 
 export const searchSpotify = (searchTerm) => {
     const accessToken = currentToken.access_token;
-    return fetch(`https://api.spotify.com/v1/search?type=track&q=${searchTerm}`, {
+    return fetch(`https://api.spotify.com/v1/search?type=track,album,artist&q=${searchTerm}`, {
         headers: {
             Authorization: `Bearer ${accessToken}`,
         },
@@ -134,6 +109,7 @@ export const searchSpotify = (searchTerm) => {
             name: track.name,
             artist: track.artists[0].name,
             album: track.album.name,
+            image: track.album.images[0].url,
             uri: track.uri
         }));
     });
