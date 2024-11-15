@@ -3,7 +3,7 @@ import SearchBar from './components/SearchBar';
 import Header from './components/Header';
 import SearchResults from './components/SearchResults';
 import Playlist from './components/Playlist';
-import redirectToSpotifyAuthorize, { searchSpotify } from './requestSearch';
+import redirectToSpotifyAuthorize, { searchSpotify, savePlaylistToAccount } from './requestSearch';
 import './App.css';
 
 function App() {
@@ -40,6 +40,15 @@ function App() {
     setPlaylistName(name)
   }, []);
 
+  const savePlaylist = useCallback(() => {
+    const trackUri = playlistTracks.map((track) => track.uri);
+    savePlaylistToAccount(playlistName, trackUri).then(() => {
+      setPlaylistName('New playlist');
+      setPlaylistTracks([]);
+      console.log('Playlist save successfuly');
+    })
+  }, [playlistName, playlistTracks]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 to-purple-600">
       <Header />
@@ -52,7 +61,8 @@ function App() {
             playlistName={playlistName}
             playlistTracks={playlistTracks}
             onNameChange={updatePlaylistName}
-            onRemove={removeTrack} />
+            onRemove={removeTrack} 
+            onSavePlaylist={savePlaylist} />
           </div>
         </div>
       </div>

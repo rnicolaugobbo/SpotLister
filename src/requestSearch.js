@@ -139,32 +139,48 @@ export const searchSpotify = (searchTerm) => {
     });
 }
 
-// export const savePlaylist = (name, trackUri) => {
-//     if (!name || !trackUri.length) {
-//         return;
-//     }
+export const savePlaylistToAccount = (name, trackUri) => {
+    if (!name || !trackUri.length) {
+        return;
+    }
 
-//     const accessToken = currentToken.access_token;
-//     let userId;
+    const accessToken = currentToken.access_token;
+    let userId;
 
-//     return fetch('https://api.spotify.com/v1/me', {
-//         headers: {
-//             Authorization: `Bearer ${accessToken}`
-//         }
-//     }).then(response => {
-//         response.json();
-//     }).then(jsonResponse => {
-//         userId = jsonResponse.id;
-//         return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
-//             method: 'POST',
-//             headers: {
-//                 Authorization: `Bearer ${accessToken}`
-//             },
-//             body: {
-
-//             }
-//         })
-//     })
-// }
+    return fetch('https://api.spotify.com/v1/me', {
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        }
+    }).then(response => {
+        return response.json();
+    }).then(jsonResponse => {
+        userId = jsonResponse.id;
+        return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                public: false
+            })
+        })
+    }).then(response => {
+        return response.json();
+    }).then(jsonResponse => {
+        const playlistId = jsonResponse.id;
+        return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                uris: trackUri
+            })
+        });
+    });
+};
 
 export default redirectToSpotifyAuthorize

@@ -3,7 +3,7 @@ import TrackList from "./TrackList";
 
 function SearchResults(props) {
     return (
-        <div className="bg-purple-900/80 text-white rounded-lg overflow-hidden">
+        <div className="bg-purple-900/80 text-white rounded-lg max-h-[600px] overflow-y-auto">
           <div className="p-4 border-b border-purple-700">
             <h2 className="text-xl font-bold">Results</h2>
           </div>
