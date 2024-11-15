@@ -117,4 +117,54 @@ const redirectToSpotifyAuthorize = async () => {
     window.location.href = authEndpoint.toString();
 }
 
+export const searchSpotify = (searchTerm) => {
+    const accessToken = currentToken.access_token;
+    return fetch(`https://api.spotify.com/v1/search?type=track&q=${searchTerm}`, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+    }).then(response => {
+        return response.json();
+    }).then(jsonResponse => {
+        if (!jsonResponse.tracks) {
+            return [];
+        }
+        return jsonResponse.tracks.items.map(track => ({
+            id: track.id,
+            name: track.name,
+            artist: track.artists[0].name,
+            album: track.album.name,
+            uri: track.uri
+        }));
+    });
+}
+
+// export const savePlaylist = (name, trackUri) => {
+//     if (!name || !trackUri.length) {
+//         return;
+//     }
+
+//     const accessToken = currentToken.access_token;
+//     let userId;
+
+//     return fetch('https://api.spotify.com/v1/me', {
+//         headers: {
+//             Authorization: `Bearer ${accessToken}`
+//         }
+//     }).then(response => {
+//         response.json();
+//     }).then(jsonResponse => {
+//         userId = jsonResponse.id;
+//         return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+//             method: 'POST',
+//             headers: {
+//                 Authorization: `Bearer ${accessToken}`
+//             },
+//             body: {
+
+//             }
+//         })
+//     })
+// }
+
 export default redirectToSpotifyAuthorize
