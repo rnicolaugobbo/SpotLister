@@ -27,11 +27,14 @@ function Track(props) {
     return (
         <div className="track px-4 py-3 hover:bg-purple-800/50 transition-colors group">
             <div className="flex items-center justify-between">
-                <div className="min-w-0 flex-1">
-                    <h3 className="text-lg font-semibold text-white truncate">{props.track.name}</h3>
-                    <p className="text-sm text-purple-300 truncate">
-                        {props.track.artist} | {props.track.album}
-                    </p>
+                <div className="min-w-0 flex-1 flex items-center space-x-3">
+                    <img src={props.track.image} alt={`Album cover for ${props.track.name}`} className="w-12 h-12 object-cover rounded-sm flex-shrink-0" />
+                    <div className="min-w-0">
+                        <h3 className="text-lg font-semibold text-white truncate">{props.track.name}</h3>
+                        <p className="text-sm text-purple-300 truncate">
+                            {props.track.artist} | {props.track.album}
+                        </p>
+                    </div>
                 </div>
                 <div className="ml-4 flex-shrink-0">{renderAction()}</div>
             </div>
