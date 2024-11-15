@@ -26,7 +26,16 @@ function Playlist(props) {
             )}
           </div>
           <div className="p-4">
-            <button className="w-full px-4 py-2 text-white bg-purple-600 rounded-md hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+            <button className="w-full px-4 py-2 
+            text-white 
+            bg-purple-600 
+            rounded-md 
+            hover:bg-purple-500 
+            focus:outline-none 
+            focus:ring-2 
+            focus:ring-purple-500 
+            focus:ring-offset-2" 
+            onClick={props.onSavePlaylist}>
               SAVE TO SPOTIFY
             </button>
           </div>
