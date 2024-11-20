@@ -50,7 +50,7 @@ function App() {
   }, [playlistName, playlistTracks]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 to-purple-600">
+    <div className="min-h-screen bg-[url('/public/bg-img.jpg')] bg-cover bg-center">
       <Header />
       <div className='-mt-20'>
         <div className="max-w-4xl mx-auto space-y-8 px-4 pb-8">
