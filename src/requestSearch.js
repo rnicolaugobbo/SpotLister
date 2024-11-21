@@ -1,5 +1,5 @@
 const clientId = process.env.REACT_APP_CLIENT_ID;
-const redirectUrl = 'http://localhost:3000/';
+const redirectUrl = 'https://spotlister.netlify.app';
 const scope = 'playlist-modify-private playlist-modify-public';
 const authEndpoint = new URL('https://accounts.spotify.com/authorize');
 const tokenEndpoint = 'https://accounts.spotify.com/api/token';
