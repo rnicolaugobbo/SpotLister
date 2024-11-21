@@ -1,10 +1,10 @@
 import React, { useCallback } from "react";
 import TrackList from "./TrackList";
 
-function Playlist(props) {
+function Playlist({ onNameChange, playlistTracks, onRemove, onSavePlaylist }) {
   const handleNameChange = useCallback((event) => {
     props.onNameChange(event.target.value);
-  }, [props.onNameChange]);
+  }, [onNameChange]);
 
     return (
         <div className="bg-purple-900/80 text-white rounded-lg overflow-hidden">
@@ -18,7 +18,7 @@ function Playlist(props) {
           </div>
           <div className="max-h-[600px] overflow-y-auto">
             {props.playlistTracks.length > 0 ? (
-              <TrackList tracks={props.playlistTracks} isRemoval={true} onRemove={props.onRemove} />
+              <TrackList tracks={playlistTracks} isRemoval={true} onRemove={onRemove} />
             ) : (
               <div className="p-4">
                 <p className="text-purple-300">Your playlist items will appear here...</p>
@@ -35,7 +35,7 @@ function Playlist(props) {
             focus:ring-2 
             focus:ring-purple-500 
             focus:ring-offset-2" 
-            onClick={props.onSavePlaylist}>
+            onClick={onSavePlaylist}>
               SAVE TO SPOTIFY
             </button>
           </div>
