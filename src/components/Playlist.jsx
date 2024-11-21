@@ -3,7 +3,7 @@ import TrackList from "./TrackList";
 
 function Playlist({ onNameChange, playlistTracks, onRemove, onSavePlaylist }) {
   const handleNameChange = useCallback((event) => {
-    props.onNameChange(event.target.value);
+    onNameChange(event.target.value);
   }, [onNameChange]);
 
     return (
@@ -17,7 +17,7 @@ function Playlist({ onNameChange, playlistTracks, onRemove, onSavePlaylist }) {
             />
           </div>
           <div className="max-h-[600px] overflow-y-auto">
-            {props.playlistTracks.length > 0 ? (
+            {playlistTracks.length > 0 ? (
               <TrackList tracks={playlistTracks} isRemoval={true} onRemove={onRemove} />
             ) : (
               <div className="p-4">
