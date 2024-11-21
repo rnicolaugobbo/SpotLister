@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 
-function SearchBar(props) {
+function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
 
   const hanldeSearchTermChange = useCallback((event) => {
@@ -8,8 +8,8 @@ function SearchBar(props) {
   }, []);
 
   const search = useCallback(() => {
-    props.onSearch(searchTerm);
-  }, [props.onSearch, searchTerm])
+    onSearch(searchTerm);
+  }, [onSearch, searchTerm])
   
     return (
         <div className="flex flex-col items-center space-y-4">

@@ -1,16 +1,16 @@
 import React, { useCallback } from "react";
 
-function Track(props) {
+function Track({ track, onAdd, onRemove, isRemoval }) {
     const addTrack = useCallback((event) => {
-        props.onAdd(props.track);
-    }, [props.onAdd, props.track]);
+        onAdd(track);
+    }, [onAdd, track]);
 
     const removeTrack = useCallback((event) => {
-        props.onRemove(props.track);
-    }, [props.onRemove, props.track]);
+        onRemove(track);
+    }, [onRemove, track]);
 
     const renderAction = () => {
-        if(props.isRemoval) {
+        if(isRemoval) {
             return (
                 <button className="track-action ml-2 w-6 h-6 flex items-center justify-center rounded-full bg-purple-500 hover:bg-purple-400 text-white transition-colors" onClick={removeTrack}>
                     -
@@ -28,11 +28,11 @@ function Track(props) {
         <div className="track px-4 py-3 hover:bg-purple-800/50 transition-colors group">
             <div className="flex items-center justify-between">
                 <div className="min-w-0 flex-1 flex items-center space-x-3">
-                    <img src={props.track.image} alt={`Album cover for ${props.track.name}`} className="w-12 h-12 object-cover rounded-sm flex-shrink-0" />
+                    <img src={track.image} alt={`Album cover for ${track.name}`} className="w-12 h-12 object-cover rounded-sm flex-shrink-0" />
                     <div className="min-w-0">
-                        <h3 className="text-lg font-semibold text-white truncate">{props.track.name}</h3>
+                        <h3 className="text-lg font-semibold text-white truncate">{track.name}</h3>
                         <p className="text-sm text-purple-300 truncate">
-                            {props.track.artist} | {props.track.album}
+                            {track.artist} | {track.album}
                         </p>
                     </div>
                 </div>
